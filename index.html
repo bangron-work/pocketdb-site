@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PocketDB - NoSQL ringan berbasis SQLite untuk PHP dengan API mirip MongoDB." />
+  <meta name="keywords"
+    content="PocketDB, NoSQL, PHP, SQLite, Database, Enkripsi, AES-256, MongoDB-like API, File-based Database" />
+  <meta name="author" content="Bangron-work" />
+
+  <meta property="og:title" content="PocketDB - NoSQL Ringan untuk PHP" />
+  <meta property="og:description"
+    content="Database dokumen berbasis SQLite. Enkripsi AES-256, tanpa server, API mirip MongoDB." />
+  <meta property="og:url" content="https://bangron-work.github.io/pocketdb-site/" />
+  <title>PocketDB - NoSQL Ringan untuk PHP</title>
+
+  <!-- External Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-wrapper">
+      <a href="/" class="logo">
+        <span class="material-symbols-outlined">data_object</span>
+        PocketDB
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#fitur" class="nav-link">Fitur</a></li>
+          <li><a href="#instalasi" class="nav-link">Instalasi</a></li>
+          <li><a href="#komponen" class="nav-link">Komponen</a></li>
+          <li><a href="#advanced" class="nav-link">Advanced</a></li>
+          <li>
+            <a href="https://github.com/bangron-work/PocketDB" target="_blank" class="btn btn--filled hide-mobile">
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div style="display: flex;gap: var(--space-2);align-items: center;z-index: 1001;">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark Mode">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <a href="#fitur" class="mobile-link" onclick="app.toggleMenu()">Fitur</a>
+    <a href="#instalasi" class="mobile-link" onclick="app.toggleMenu()">Instalasi</a>
+    <a href="#komponen" class="mobile-link" onclick="app.toggleMenu()">Komponen</a>
+    <a href="https://github.com/bangron-work/PocketDB" target="_blank" class="mobile-link">Lihat di GitHub</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="container hero-section fade-in">
+      <span class="badge">v1.0 Stable</span>
+      <h1>Database NoSQL Ringan<br />di Atas SQLite</h1>
+      <p class="lead">
+        PocketDB adalah database NoSQL yang dibangun di atas SQLite untuk PHP.
+        Tawarkan API mirip MongoDB, enkripsi data, dan indexing powerful tanpa
+        server database terpisah.
+      </p>
+      <div class="hero-actions">
+        <a href="#instalasi" class="btn btn--filled">
+          <span class="material-symbols-outlined">download</span>
+          Mulai Sekarang
+        </a>
+        <a href="https://github.com/bangron-work/PocketDB" target="_blank" class="btn btn--outlined">
+          <span class="material-symbols-outlined">code</span>
+          Lihat Repositori
+        </a>
+      </div>
+
+      <div class="code-block" style="max-width: 800px;margin: var(--space-12) auto 0;text-align: left;">
+        <div class="code-header">
+          <span style="opacity: 0.7; font-size: 0.75rem">PHP</span>
+          <div style="gap: 6px; display: flex">
+            <span style="width: 10px;height: 10px;border-radius: 50%;background: #ff5f56;"></span>
+            <span style="width: 10px;height: 10px;border-radius: 50%;background: #ffbd2e;"></span>
+            <span style="width: 10px;height: 10px;border-radius: 50%;background: #27c93f;"></span>
+          </div>
+        </div>
+        <pre><code><span class="c-kw">require_once</span> <span class="c-val">'src/Client.php'</span>;
+
+<span class="c-var">$client</span> = <span class="c-kw">new</span> <span class="c-fn">Client</span>(<span class="c-val">'./data'</span>);
+<span class="c-var">$users</span> = <span class="c-var">$client</span>->myDatabase->users;
+
+<span class="c-comment">// Insert data simpel</span>
+<span class="c-var">$users</span>-><span class="c-fn">insert</span>([
+    <span class="c-attr">'name'</span> => <span class="c-val">'John Doe'</span>,
+    <span class="c-attr">'email'</span> => <span class="c-val">'john@example.com'</span>
+]);
+
+<span class="c-comment">// Query seperti MongoDB</span>
+<span class="c-var">$user</span> = <span class="c-var">$users</span>-><span class="c-fn">findOne</span>([<span class="c-attr">'email'</span> => <span class="c-val">'john@example.com'</span>]);</code></pre>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="fitur" class="container section">
+      <div class="text-center mb-4">
+        <h2>Fitur Utama</h2>
+        <p class="lead" style="margin-bottom: 0">
+          PocketDB menggabungkan kesederhanaan file-based database dengan
+          kekuatan query NoSQL.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <span class="material-symbols-outlined card__icon">schema</span>
+          <h3>Core Features</h3>
+          <ul class="card__list">
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              JSON Storage di SQLite
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              MongoDB-like API
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Serverless Architecture
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              ACID Compliance
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="material-symbols-outlined card__icon">security</span>
+          <h3>Advanced Features</h3>
+          <ul class="card__list">
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              <strong>AES-256 Encryption</strong>
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              JSON Indexing
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Hooks System (Events)
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Populate & Relations
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="material-symbols-outlined card__icon">manage_search</span>
+          <h3>Query Capabilities</h3>
+          <ul class="card__list">
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Operators ($gt, $in, $regex)
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Nested Field Access
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Logical ($and, $or)
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="font-size: 18px">check</span>
+              Fuzzy Search
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Installation Section (Full Width Background Wrapper) -->
+    <div class="bg-wrapper">
+      <section id="instalasi" class="container section">
+        <div class="highlight-box">
+          <div class="split-row">
+            <div>
+              <span class="badge">Instalasi</span>
+              <h2>Mulai dalam Hitungan Detik</h2>
+              <p style="margin-bottom: var(--space-6)">
+                Instalasi sangat mudah melalui Composer. Tidak memerlukan
+                konfigurasi server yang rumit. Cukup include dan pakai.
+              </p>
+              <div class="component-item" style="
+                    margin-bottom: var(--space-6);
+                    border-left-color: var(--color-secondary);
+                  ">
+                <h4>PHP 7.4+</h4>
+                <span>Dibutuhkan PDO SQLite & OpenSSL</span>
+              </div>
+              <a href="https://packagist.org/packages/bangron-work/pocketdb" class="btn btn--filled">Buka di
+                Packagist</a>
+            </div>
+            <div class="code-block" style="margin-top: 0; margin-bottom: 0">
+              <pre><code><span class="c-comment"># Via Composer (Direkomendasikan)</span>
+composer require bangron-work/pocketdb
+
+<span class="c-comment"># Atau via Git Clone</span>
+git clone https://github.com/bangron-work/PocketDB.git
+<span class="c-kw">cd</span> PocketDB</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Components Architecture -->
+    <section id="komponen" class="container section">
+      <div class="text-center mb-4">
+        <h2>Struktur & Komponen</h2>
+        <p class="lead">
+          PocketDB dirancang dengan struktur modular yang bersih, memisahkan
+          tanggung jawab antara koneksi, koleksi, dan query.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="component-item">
+          <h4>1. Client</h4>
+          <span>Titik masuk utama, manajemen path, dan koneksi pooling.</span>
+        </div>
+        <div class="component-item">
+          <h4>2. Database</h4>
+          <span>Container koleksi, manajemen koneksi SQLite, dan enkripsi.</span>
+        </div>
+        <div class="component-item">
+          <h4>3. Collection</h4>
+          <span>Operasi CRUD, ID generation, Event hooks, dan Indexing.</span>
+        </div>
+        <div class="component-item">
+          <h4>4. Cursor</h4>
+          <span>Iterasi hasil query, pagination, sorting, dan population.</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Advanced Usage / Encryption -->
+    <section id="advanced" class="container section">
+      <div class="split-row">
+        <div class="code-block">
+          <pre><code><span class="c-comment">// Database-level encryption</span>
+<span class="c-var">$db</span> = <span class="c-kw">new</span> <span class="c-fn">Database</span>(<span class="c-val">'./secure.db'</span>, [
+    <span class="c-attr">'encryption_key'</span> => <span class="c-val">'your-secret-key'</span>
+]);
+
+<span class="c-comment">// Event Hooks System</span>
+<span class="c-var">$users</span>-><span class="c-fn">on</span>(<span class="c-val">'beforeInsert'</span>, <span class="c-kw">function</span>(<span class="c-var">$doc</span>) {
+    <span class="c-kw">if</span> (!<span class="c-fn">filter_var</span>(<span class="c-var">$doc</span>[<span class="c-val">'email'</span>], FILTER_VALIDATE_EMAIL)) {
+        <span class="c-kw">return false</span>; <span class="c-comment">// Cancel</span>
+    }
+    <span class="c-var">$doc</span>[<span class="c-val">'created_at'</span>] = <span class="c-fn">date</span>(<span class="c-val">'Y-m-d H:i:s'</span>);
+    <span class="c-kw">return</span> <span class="c-var">$doc</span>;
+});</code></pre>
+        </div>
+        <div>
+          <span class="badge">Security & Flexibility</span>
+          <h2>Keamanan & Hooks</h2>
+          <p style="margin-bottom: var(--space-6)">
+            Lindungi data sensitif Anda dengan enkripsi
+            <strong>AES-256-CBC</strong> bawaan. Tidak hanya itu, sistem Hooks
+            memungkinkan Anda menangkap event sebelum atau sesudah operasi
+            database.
+          </p>
+          <ul style="display: flex; flex-direction: column; gap: var(--space-4)">
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="color: var(--color-primary)">lock</span>
+              <div>
+                <strong>Encryption Support</strong>
+                <p style="font-size: 0.9rem; opacity: 0.8">
+                  Enkripsi database maupun koleksi spesifik dengan searchable
+                  fields.
+                </p>
+              </div>
+            </li>
+            <li class="card__item">
+              <span class="material-symbols-outlined" style="color: var(--color-primary)">bolt</span>
+              <div>
+                <strong>Event-Driven</strong>
+                <p style="font-size: 0.9rem; opacity: 0.8">
+                  Gunakan hook untuk validasi otomatis, logging, atau update
+                  relasi.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="container section">
+      <h2 class="text-center">Use Cases</h2>
+      <div class="grid-3 mt-8">
+        <article class="card">
+          <h3>User Management</h3>
+          <p>
+            Validasi email otomatis menggunakan hooks sebelum insert. Mencegah
+            perubahan email saat update profile.
+          </p>
+        </article>
+        <article class="card">
+          <h3>E-Commerce</h3>
+          <p>
+            Manajemen stok yang aman. Transaksi otomatis mengurangi inventory
+            saat order dibuat.
+          </p>
+        </article>
+        <article class="card">
+          <h3>CMS / Blog</h3>
+          <p>
+            Workflow publishing dari draft ke published dengan timestamp
+            otomatis.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Production & Optimization (Full Width Background Wrapper) -->
+    <!-- <div class="bg-wrapper">
+      <section id="dokumentasi" class="container section">
+        <div class="highlight-box text-center">
+          <h2>Siap untuk Produksi?</h2>
+          <p class="lead">
+            PocketDB dilengkapi dengan strategi backup, monitoring
+            performance, dan tips query optimization.
+          </p>
+          <div style="display: flex;gap: var(--space-4);justify-content: center;flex-wrap: wrap;">
+            <a href="https://github.com/bangron-work/PocketDB#readme" target="_blank"
+              class="btn btn--filled">Dokumentasi</a>
+            <a href="https://github.com/bangron-work/PocketDB/issues" target="_blank" class="btn btn--outlined">Laporkan
+              Isu</a>
+          </div>
+        </div>
+      </section>
+    </div> -->
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <h3>PocketDB</h3>
+      <div class="footer-links">
+        <a href="https://github.com/bangron-work/PocketDB" target="_blank">GitHub</a>
+        <a href="https://github.com/bangron-work/PocketDB/blob/main/docs/index.md" target="_blank">Documentation</a>
+        <a href="https://github.com/bangron-work/PocketDB/blob/main/LICENSE" target="_blank">License (MIT)</a>
+      </div>
+      <p class="copyright">
+        Dibuat dengan ❤️ menggunakan PHP dan SQLite<br />&copy; 2023
+        Bangron-work. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="./js/scripts.min.js"></script>
+</body>
+
+</html>
